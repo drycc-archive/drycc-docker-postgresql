@@ -1,4 +1,4 @@
-FROM docker.io/drycc/base:bullseye
+FROM registry.drycc.cc/drycc/base:bullseye
 
 ENV GOSU_VERSION="1.14" \
   POSTGRESQL_VERSION="14.2" \

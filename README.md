@@ -1,4 +1,4 @@
-# PostgreSQL packaged by Bitnami
+# PostgreSQL packaged by drycc-addons
 
 ## What is PostgreSQL?
 
@@ -13,93 +13,58 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 ## TL;DR
 
 ```console
-$ docker run --name postgresql bitnami/postgresql:latest
+$ docker run --name postgresql quay.io/drycc-addons/postgresql:14.2
 ```
 
 ### Docker Compose
 
 ```console
-$ curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-postgresql/master/docker-compose.yml > docker-compose.yml
+$ curl -sSL https://raw.githubusercontent.com/drycc-addons/drycc-docker-postgresql/main/docker-compose.yml > docker-compose.yml
 $ docker-compose up -d
 ```
 
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [Configuration](#configuration) section for a more secure deployment.
 
-## Why use Bitnami Images?
-
-* Bitnami closely tracks upstream source changes and promptly publishes new versions of this image using our automated systems.
-* With Bitnami images the latest bug fixes and features are available as soon as possible.
-* Bitnami containers, virtual machines and cloud images use the same components and configuration approach - making it easy to switch between formats based on your project needs.
-* All our images are based on [minideb](https://github.com/bitnami/minideb) a minimalist Debian based container image which gives you a small base container image and the familiarity of a leading Linux distribution.
-* All Bitnami images available in Docker Hub are signed with [Docker Content Trust (DCT)](https://docs.docker.com/engine/security/trust/content_trust/). You can use `DOCKER_CONTENT_TRUST=1` to verify the integrity of the images.
-* Bitnami container images are released daily with the latest distribution packages available.
-
-
-> This [CVE scan report](https://quay.io/repository/bitnami/postgresql?tab=tags) contains a security report with all open CVEs. To get the list of actionable security issues, find the "latest" tag, click the vulnerability report link under the corresponding "Security scan" field and then select the "Only show fixable" filter on the next page.
-
-## How to deploy PostgreSQL in Kubernetes?
-
-Deploying Bitnami applications as Helm Charts is the easiest way to get started with our applications on Kubernetes. Read more about the installation in the [Bitnami PostgreSQL Chart GitHub repository](https://github.com/bitnami/charts/tree/master/bitnami/postgresql).
-
-Bitnami containers can be used with [Kubeapps](https://kubeapps.com/) for deployment and management of Helm Charts in clusters.
-
-## Why use a non-root container?
-
-Non-root container images add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. Learn more about non-root containers [in our docs](https://docs.bitnami.com/tutorials/work-with-non-root-containers/).
-
-## Supported tags and respective `Dockerfile` links
-
-Learn more about the Bitnami tagging policy and the difference between rolling tags and immutable tags [in our documentation page](https://docs.bitnami.com/tutorials/understand-rolling-tags-containers/).
-
-
-* [`14`, `14-debian-10`, `14.2.0`, `14.2.0-debian-10-r56`, `latest` (14/debian-10/Dockerfile)](https://github.com/bitnami/bitnami-docker-postgresql/blob/14.2.0-debian-10-r56/14/debian-10/Dockerfile)
-* [`13`, `13-debian-10`, `13.6.0`, `13.6.0-debian-10-r55` (13/debian-10/Dockerfile)](https://github.com/bitnami/bitnami-docker-postgresql/blob/13.6.0-debian-10-r55/13/debian-10/Dockerfile)
-* [`12`, `12-debian-10`, `12.10.0`, `12.10.0-debian-10-r56` (12/debian-10/Dockerfile)](https://github.com/bitnami/bitnami-docker-postgresql/blob/12.10.0-debian-10-r56/12/debian-10/Dockerfile)
-* [`11`, `11-debian-10`, `11.15.0`, `11.15.0-debian-10-r56` (11/debian-10/Dockerfile)](https://github.com/bitnami/bitnami-docker-postgresql/blob/11.15.0-debian-10-r56/11/debian-10/Dockerfile)
-* [`10`, `10-debian-10`, `10.20.0`, `10.20.0-debian-10-r55` (10/debian-10/Dockerfile)](https://github.com/bitnami/bitnami-docker-postgresql/blob/10.20.0-debian-10-r55/10/debian-10/Dockerfile)
-
-Subscribe to project updates by watching the [bitnami/postgresql GitHub repo](https://github.com/bitnami/bitnami-docker-postgresql).
-
 ## Get this image
 
-The recommended way to get the Bitnami PostgreSQL Docker Image is to pull the prebuilt image from the [Docker Hub Registry](https://hub.docker.com/r/bitnami/postgresql).
+The recommended way to get the Bitnami PostgreSQL Docker Image is to pull the prebuilt image from the [Container Image Registry](https://quay.io/repository/drycc-addons/postgresql).
 
 ```console
-$ docker pull bitnami/postgresql:latest
+$ docker pull quay.io/drycc-addons/postgresql:14.2
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/postgresql/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://quay.io/repository/drycc-addons/postgresql?tab=tags) in the Container Image Registry.
 
 ```console
-$ docker pull bitnami/postgresql:[TAG]
+$ docker pull quay.io/drycc-addons/postgresql:[TAG]
 ```
 
 If you wish, you can also build the image yourself.
 
 ```console
-$ docker build -t bitnami/postgresql:latest 'https://github.com/bitnami/bitnami-docker-postgresql.git#master:14/debian-10'
+$ docker build -t quay.io/drycc-addons/postgresql:14.2 'https://github.com/drycc-addons/drycc-docker-postgresql.git#main:14.2/debian'
 ```
 
 ## Persisting your database
 
 If you remove the container all your data and configurations will be lost, and the next time you run the image the database will be reinitialized. To avoid this loss of data, you should mount a volume that will persist even after the container is removed.
 
-For persistence you should mount a directory at the `/bitnami/postgresql` path. If the mounted directory is empty, it will be initialized on the first run.
+For persistence you should mount a directory at the `/drycc/postgresql` path. If the mounted directory is empty, it will be initialized on the first run.
 
 ```console
 $ docker run \
-    -v /path/to/postgresql-persistence:/bitnami/postgresql \
-    bitnami/postgresql:latest
+    -v /path/to/postgresql-persistence:/drycc/postgresql \
+    quay.io/drycc-addons/postgresql:14.2
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/bitnami-docker-postgresql/blob/master/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/drycc-addons/drycc-docker-postgresql/blob/main/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
   postgresql:
   ...
     volumes:
-      - /path/to/postgresql-persistence:/bitnami/postgresql
+      - /path/to/postgresql-persistence:/drycc/postgresql
   ...
 ```
 
@@ -128,7 +93,7 @@ Use the `--network app-tier` argument to the `docker run` command to attach the 
 ```console
 $ docker run -d --name postgresql-server \
     --network app-tier \
-    bitnami/postgresql:latest
+    quay.io/drycc-addons/postgresql:14.2
 ```
 
 #### Step 3: Launch your PostgreSQL client instance
@@ -138,7 +103,7 @@ Finally we create a new container instance to launch the PostgreSQL client and c
 ```console
 $ docker run -it --rm \
     --network app-tier \
-    bitnami/postgresql:latest psql -h postgresql-server -U postgres
+    quay.io/drycc-addons/postgresql:14.2 psql -h postgresql-server -U postgres
 ```
 
 ### Using Docker Compose
@@ -154,7 +119,7 @@ networks:
 
 services:
   postgresql:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     networks:
       - app-tier
   myapp:
@@ -199,10 +164,10 @@ In order to have your custom files inside the docker image you can mount them as
 In the above commands you may have noticed the use of the `POSTGRESQL_PASSWORD` environment variable. Passing the `POSTGRESQL_PASSWORD` environment variable when running the image for the first time will set the password of the `postgres` user to the value of `POSTGRESQL_PASSWORD` (or the content of the file specified in `POSTGRESQL_PASSWORD_FILE`).
 
 ```console
-$ docker run --name postgresql -e POSTGRESQL_PASSWORD=password123 bitnami/postgresql:latest
+$ docker run --name postgresql -e POSTGRESQL_PASSWORD=password123 quay.io/drycc-addons/postgresql:14.2
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/bitnami-docker-postgresql/blob/master/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/drycc-addons/drycc-docker-postgresql/blob/main/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -223,10 +188,10 @@ Refer to [Creating a database user on first run](#creating-a-database-user-on-fi
 By passing the `POSTGRESQL_DATABASE` environment variable when running the image for the first time, a database will be created. This is useful if your application requires that a database already exists, saving you from having to manually create the database using the PostgreSQL client.
 
 ```console
-$ docker run --name postgresql -e POSTGRESQL_DATABASE=my_database bitnami/postgresql:latest
+$ docker run --name postgresql -e POSTGRESQL_DATABASE=my_database quay.io/drycc-addons/postgresql:14.2
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/bitnami-docker-postgresql/blob/master/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/drycc-addons/drycc-docker-postgresql/blob/main/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -242,10 +207,10 @@ services:
 You can also create a restricted database user that only has permissions for the database created with the [`POSTGRESQL_DATABASE`](#creating-a-database-on-first-run) environment variable. To do this, provide the `POSTGRESQL_USERNAME` environment variable.
 
 ```console
-$ docker run --name postgresql -e POSTGRESQL_USERNAME=my_user -e POSTGRESQL_PASSWORD=password123 -e POSTGRESQL_DATABASE=my_database bitnami/postgresql:latest
+$ docker run --name postgresql -e POSTGRESQL_USERNAME=my_user -e POSTGRESQL_PASSWORD=password123 -e POSTGRESQL_DATABASE=my_database quay.io/drycc-addons/postgresql:14.2
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/bitnami-docker-postgresql/blob/master/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/drycc-addons/drycc-docker-postgresql/blob/main/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -285,7 +250,7 @@ The Bitnami PostgreSQL Image allows configuring several parameters for the conne
 - `POSTGRESQL_TCP_KEEPALIVES_COUNT`: TCP keepalive count. No defaults.
 
 ### Configuring time zone
-
+chore(README): update
 The Bitnami PostgreSQL Image allows configuring the time zone for PostgreSQL with the following environment variables:
 
 - `POSTGRESQL_TIMEZONE`: Sets the time zone for displaying and interpreting time stamps.
@@ -295,7 +260,7 @@ The Bitnami PostgreSQL Image allows configuring the time zone for PostgreSQL wit
 
 By default, the Bitnami PostgreSQL Image generates `local` and `md5` entries in the pg_hba.conf file. In order to adapt to any other requirements or standards, it is possible to change the pg_hba.conf file by:
 
-- Mounting your own pg_hba.conf file in `/bitnami/postgresql/conf`
+- Mounting your own pg_hba.conf file in `/drycc/postgresql/conf`
 - Using the `POSTGRESQL_PGHBA_REMOVE_FILTERS` with a comma-separated list of patterns. All lines that match any of the patterns will be removed. For example, if we want to remove all `local` and `md5` authentication (in favour of hostssl only connections, for example), set `POSTGRESQL_PGHBA_REMOVE_FILTERS=local, md5`.
 
 ### Preloading shared libraries
@@ -327,7 +292,7 @@ $ docker run --name postgresql-master \
   -e POSTGRESQL_DATABASE=my_database \
   -e POSTGRESQL_REPLICATION_USER=my_repl_user \
   -e POSTGRESQL_REPLICATION_PASSWORD=my_repl_password \
-  bitnami/postgresql:latest
+  quay.io/drycc-addons/postgresql:14.2
 ```
 
 In this command we are configuring the container as the master using the `POSTGRESQL_REPLICATION_MODE=master` parameter. A replication user is specified using the `POSTGRESQL_REPLICATION_USER` and `POSTGRESQL_REPLICATION_PASSWORD` parameters.
@@ -344,7 +309,7 @@ $ docker run --name postgresql-slave \
   -e POSTGRESQL_MASTER_PORT_NUMBER=5432 \
   -e POSTGRESQL_REPLICATION_USER=my_repl_user \
   -e POSTGRESQL_REPLICATION_PASSWORD=my_repl_password \
-  bitnami/postgresql:latest
+  quay.io/drycc-addons/postgresql:14.2
 ```
 
 In the above command the container is configured as a `slave` using the `POSTGRESQL_REPLICATION_MODE` parameter. Before the replication slave is started, the `POSTGRESQL_MASTER_HOST` and `POSTGRESQL_MASTER_PORT_NUMBER` parameters are used by the slave container to connect to the master and replicate the initial database from the master. The `POSTGRESQL_REPLICATION_USER` and `POSTGRESQL_REPLICATION_PASSWORD` credentials are used to authenticate with the master. In order to change the `pg_hba.conf` default settings, the slave needs to know if `POSTGRESQL_PASSWORD` is set.
@@ -368,11 +333,11 @@ version: '2'
 
 services:
   postgresql-master:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     ports:
       - '5432'
     volumes:
-      - 'postgresql_master_data:/bitnami/postgresql'
+      - 'postgresql_master_data:/drycc/postgresql'
     environment:
       - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=repl_user
@@ -381,7 +346,7 @@ services:
       - POSTGRESQL_PASSWORD=my_password
       - POSTGRESQL_DATABASE=my_database
   postgresql-slave:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     ports:
       - '5432'
     depends_on:
@@ -421,11 +386,11 @@ version: '2'
 
 services:
   postgresql-master:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     ports:
       - '5432'
     volumes:
-      - 'postgresql_master_data:/bitnami/postgresql'
+      - 'postgresql_master_data:/drycc/postgresql'
     environment:
       - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=repl_user
@@ -436,9 +401,9 @@ services:
       - POSTGRESQL_SYNCHRONOUS_COMMIT_MODE=on
       - POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS=1
     volumes:
-      - '/path/to/postgresql-persistence:/bitnami/postgresql'
+      - '/path/to/postgresql-persistence:/drycc/postgresql'
   postgresql-slave:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     ports:
       - '5432'
     depends_on:
@@ -450,7 +415,7 @@ services:
       - POSTGRESQL_MASTER_HOST=postgresql-master
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
   postgresql-slave2:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     ports:
       - '5432'
     depends_on:
@@ -525,7 +490,7 @@ When enabling TLS, PostgreSQL will support both standard and encrypted traffic b
         -e POSTGRESQL_ENABLE_TLS=yes \
         -e POSTGRESQL_TLS_CERT_FILE=/opt/drycc/postgresql/certs/postgres.crt \
         -e POSTGRESQL_TLS_KEY_FILE=/opt/drycc/postgresql/certs/postgres.key \
-        bitnami/postgresql:latest
+        quay.io/drycc-addons/postgresql:14.2
     ```
 
 2. Modifying the `docker-compose.yml` file present in this repository:
@@ -546,11 +511,11 @@ When enabling TLS, PostgreSQL will support both standard and encrypted traffic b
       ...
     ```
 
-Alternatively, you may also provide this configuration in your [custom](https://github.com/bitnami/bitnami-docker-postgresql#configuration-file) configuration file.
+Alternatively, you may also provide this configuration in your [custom](https://github.com/drycc-addons/drycc-docker-postgresql#configuration-file) configuration file.
 
 ### Configuration file
 
-The image looks for `postgresql.conf` file in `/opt/drycc/postgresql/conf/`. You can mount a volume at `/bitnami/postgresql/conf/` and copy/edit the `postgresql.conf` file in the `/path/to/postgresql-persistence/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
+The image looks for `postgresql.conf` file in `/opt/drycc/postgresql/conf/`. You can mount a volume at `/drycc/postgresql/conf/` and copy/edit the `postgresql.conf` file in the `/path/to/postgresql-persistence/conf/`. The default configurations will be populated to the `conf/` directory if it's empty.
 
 ```console
 /path/to/postgresql-persistence/conf/
@@ -570,8 +535,8 @@ Run the PostgreSQL image, mounting a directory from your host.
 
 ```console
 $ docker run --name postgresql \
-    -v /path/to/postgresql-persistence/conf/:/bitnami/postgresql/conf/ \
-    bitnami/postgresql:latest
+    -v /path/to/postgresql-persistence/conf/:/drycc/postgresql/conf/ \
+    quay.io/drycc-addons/postgresql:14.2
 ```
 
 or using Docker Compose:
@@ -581,11 +546,11 @@ version: '2'
 
 services:
   postgresql:
-    image: 'bitnami/postgresql:latest'
+    image: 'quay.io/drycc-addons/postgresql:14.2'
     ports:
       - '5432:5432'
     volumes:
-      - /path/to/postgresql-persistence/conf/:/bitnami/postgresql/conf/
+      - /path/to/postgresql-persistence/conf/:/drycc/postgresql/conf/
 ```
 
 #### Step 2: Edit the configuration
@@ -614,7 +579,7 @@ Refer to the [server configuration](http://www.postgresql.org/docs/9.4/static/ru
 
 #### Allow settings to be loaded from files other than the default `postgresql.conf`
 
-Apart of using a custom `postgresql.conf`, you can include files ending in `.conf` from the `conf.d` directory in the volume at `/bitnami/postgresql/conf/`.
+Apart of using a custom `postgresql.conf`, you can include files ending in `.conf` from the `conf.d` directory in the volume at `/drycc/postgresql/conf/`.
 For this purpose, the default `postgresql.conf` contains the following section:
 
 ```config
@@ -657,10 +622,10 @@ Specifying extra initdb arguments can easily be done using the following environ
 $ docker run --name postgresql \
   -e POSTGRESQL_INITDB_ARGS="--data-checksums" \
   -e POSTGRESQL_INITDB_WALDIR="/bitnami/waldir" \
-  bitnami/postgresql:latest
+  quay.io/drycc-addons/postgresql:14.2
 ```
 
-or by modifying the [`docker-compose.yml`](https://github.com/bitnami/bitnami-docker-postgresql/blob/master/docker-compose.yml) file present in this repository:
+or by modifying the [`docker-compose.yml`](https://github.com/drycc-addons/drycc-docker-postgresql/blob/main/docker-compose.yml) file present in this repository:
 
 ```yaml
 services:
@@ -756,10 +721,10 @@ Bitnami provides up-to-date versions of PostgreSQL, including security patches, 
 #### Step 1: Get the updated image
 
 ```console
-$ docker pull bitnami/postgresql:latest
+$ docker pull quay.io/drycc-addons/postgresql:14.2
 ```
 
-or if you're using Docker Compose, update the value of the image property to `bitnami/postgresql:latest`.
+or if you're using Docker Compose, update the value of the image property to `quay.io/drycc-addons/postgresql:14.2`.
 
 #### Step 2: Stop and backup the currently running container
 
@@ -798,7 +763,7 @@ $ docker-compose rm -v postgresql
 Re-create your container from the new image.
 
 ```console
-$ docker run --name postgresql bitnami/postgresql:latest
+$ docker run --name postgresql quay.io/drycc-addons/postgresql:14.2
 ```
 
 or using Docker Compose:
@@ -807,77 +772,16 @@ or using Docker Compose:
 $ docker-compose up postgresql
 ```
 
-## Notable Changes
-
-### 9.6.16-centos-7-r71, 10.11.0-centos-7-r72, 11.6.0-centos-7-r71, and 12.1.0-centos-7-r72
-
-- `9.6.16-centos-7-r71`, `10.11.0-centos-7-r72`, `11.6.0-centos-7-r71`, and `12.1.0-centos-7-r72` are considered the latest images based on CentOS.
-- Standard supported distros: Debian & OEL.
-
-### 9.6.15-r93, 9.6.15-ol-7-r108, 9.6.15-centos-7-r107, 10.10.0-r923, 10.10.0-ol-7-r106, 10.10.0-centos-7-r107, 11.5.0-r89, 11.5.0-centos-7-r103, 11.5.0-ol-7-r108, 12.0.0-r21, 12.0.0-centos-7-r34 and 12.0.0-ol-7-r32
-
-- Adds LDAP authentication support
-
-### 9.6.15-r82, 9.6.15-ol-7-r92, 9.6.15-centos-7-r91, 10.10.0-r82, 10.10.0-ol-7-r90, 10.10.0-centos-7-r91, 11.5.0-r80, 11.5.0-centos-7-r87, 11.5.0-ol-7-r92, 12.0.0-r11, 12.0.0-centos-7-r17 and 12.0.0-ol-7-r17
-
-- Adds Postgis extension to postgresql, version 2.3.x to Postgresiql 9.6 and version 2.5 to 10, 11 and 12.
-
-### 9.6.12-r70, 9.6.12-ol-7-r72, 10.7.0-r69, 10.7.0-ol-7-r71, 11.2.0-r69 and 11.2.0-ol-7-r71
-
-- Decrease the size of the container. It is not necessary Node.js anymore. PostgreSQL configuration moved to bash scripts in the rootfs/ folder.
-- This container is backwards compatible with the previous versions, as the mount folders remain unchanged.
-- The `POSTGRESQL_PASSWORD` variable must be passed to the slaves so they generate the proper `pg_hba.conf` admission rules.
-
-### 9.6.11-r66, 9.6.11-ol-7-r83, 10.6.0-r68, 10.6.0-ol-7-r83, 11.1.0-r62 and 11.1.0-ol-7-r79
-
-- The PostgreSQL container can be configured using two sets of environment variables. For more information, check [Environment variables aliases](#environment-variables-aliases)
-
-### 9.6.11-r38, 10.6.0-r39 and 11.1.0-r34
-
-- The PostgreSQL container now contains options to easily configure synchronous commits between slaves. This provides more data stability, but must be configured with caution as it also has a cost in performance. For more information, check [Synchronous Commits](#synchronous-commits).
-
-### 9.6.9-r19 and 10.4.0-r19
-
-- The PostgreSQL container has been migrated to a non-root user approach. Previously the container ran as the `root` user and the PostgreSQL daemon was started as the `postgres` user. From now on, both the container and the PostgreSQL daemon run as user `1001`. As a consequence, the data directory must be writable by that user. You can revert this behavior by changing `USER 1001` to `USER root` in the Dockerfile.
-
-### 9.5.3-r5
-
-- The `POSTGRES_` prefix on environment variables is now replaced by `POSTGRESQL_`
-- `POSTGRES_USER` parameter has been renamed to `POSTGRESQL_USERNAME`.
-- `POSTGRES_DB` parameter has been renamed to `POSTGRESQL_DATABASE`.
-- `POSTGRES_MODE` parameter has been renamed to `POSTGRESQL_REPLICATION_MODE`.
-
-### 9.5.3-r0
-
-- All volumes have been merged at `/bitnami/postgresql`. Now you only need to mount a single volume at `/bitnami/postgresql` for persistence.
-- The logs are always sent to the `stdout` and are no longer collected in the volume.
-
 ## Contributing
 
-We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/bitnami/bitnami-docker-postgresql/issues), or submit a [pull request](https://github.com/bitnami/bitnami-docker-postgresql/pulls) with your contribution.
+We'd love for you to contribute to this container. You can request new features by creating an [issue](https://github.com/drycc-addons/drycc-docker-postgresql/issues), or submit a [pull request](https://github.com/drycc-addons/drycc-docker-postgresql/pulls) with your contribution.
 
 ## Issues
 
-If you encountered a problem running this container, you can file an [issue](https://github.com/bitnami/bitnami-docker-postgresql/issues/new). For us to provide better support, be sure to include the following information in your issue:
+If you encountered a problem running this container, you can file an [issue](https://github.com/drycc-addons/drycc-docker-postgresql/issues/new). For us to provide better support, be sure to include the following information in your issue:
 
 - Host OS and version
 - Docker version (`docker version`)
 - Output of `docker info`
 - Version of this container
 - The command you used to run the container, and any relevant output you saw (masking any sensitive information)
-
-## License
-
-Copyright &copy; 2022 Bitnami
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.

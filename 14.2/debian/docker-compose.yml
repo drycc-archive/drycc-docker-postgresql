@@ -2,7 +2,7 @@ version: '2'
 
 services:
   postgresql:
-    image: docker.io/drycc-addons/postgresql:14.2
+    image: quay.io/drycc-addons/postgresql:14.2
     ports:
       - '5432:5432'
     volumes:
