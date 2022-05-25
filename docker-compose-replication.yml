@@ -8,7 +8,8 @@ services:
     volumes:
       - 'postgresql_master_data:/drycc/postgresql'
     environment:
-      - POSTGRESQL_REPLICATION_MODE=master1
+      - DRYCC_DEBUG=true
+      - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=repl_user
       - POSTGRESQL_REPLICATION_PASSWORD=repl_password
       - POSTGRESQL_USERNAME=postgres
@@ -22,6 +23,7 @@ services:
     depends_on:
       - postgresql-master
     environment:
+      - DRYCC_DEBUG=true
       - POSTGRESQL_REPLICATION_MODE=slave
       - POSTGRESQL_REPLICATION_USER=repl_user
       - POSTGRESQL_REPLICATION_PASSWORD=repl_password

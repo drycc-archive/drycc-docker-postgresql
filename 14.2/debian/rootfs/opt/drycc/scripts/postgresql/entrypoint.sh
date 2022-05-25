@@ -8,13 +8,10 @@ set -o pipefail
 #set -o xtrace
 
 # Load libraries
-# . /opt/drycc/scripts/libbitnami.sh
 . /opt/drycc/scripts/libpostgresql.sh
 
 # Load PostgreSQL environment variables
 . /opt/drycc/scripts/postgresql-env.sh
-
-# print_welcome_page
 
 # Enable the nss_wrapper settings
 postgresql_enable_nss_wrapper

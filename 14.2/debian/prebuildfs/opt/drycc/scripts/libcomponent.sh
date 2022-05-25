@@ -1,15 +1,15 @@
 #!/bin/bash
 #
-# Library for managing Bitnami components
+# Library for managing Drycc components
 
 # Constants
-CACHE_ROOT="/tmp/bitnami/pkg/cache"
+CACHE_ROOT="/tmp/drycc/pkg/cache"
 DOWNLOAD_URL="https://downloads.bitnami.com/files/stacksmith"
 
 # Functions
 
 ########################
-# Download and unpack a Bitnami package
+# Download and unpack a Drycc package
 # Globals:
 #   OS_NAME
 #   OS_ARCH

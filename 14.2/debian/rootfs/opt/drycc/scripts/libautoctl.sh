@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Bitnami pg_auto_failover library
+# Drycc pg_auto_failover library
 
 # shellcheck disable=SC1090,SC1091
 
