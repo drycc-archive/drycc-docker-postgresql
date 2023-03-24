@@ -8,7 +8,7 @@
 
 This project has been forked from [bitnami-docker-postgresql](https://github.com/bitnami/bitnami-docker-postgresql),  We mainly modified the dockerfile in order to build the images of amd64 and arm64 architectures. 
 
-Trademarks: This software listing is packaged by Bitnami. The respective trademarks mentioned in the offering are owned by the respective companies, and use of them does not imply any affiliation or endorsement.
+Trademarks: This software listing is packaged by Drycc. The respective trademarks mentioned in the offering are owned by the respective companies, and use of them does not imply any affiliation or endorsement.
 
 ## TL;DR
 
@@ -27,7 +27,7 @@ $ docker-compose up -d
 
 ## Get this image
 
-The recommended way to get the Bitnami PostgreSQL Docker Image is to pull the prebuilt image from the [Container Image Registry](https://quay.io/repository/drycc-addons/postgresql).
+The recommended way to get the Drycc PostgreSQL Docker Image is to pull the prebuilt image from the [Container Image Registry](https://quay.io/repository/drycc-addons/postgresql).
 
 ```console
 $ docker pull quay.io/drycc-addons/postgresql:14.2
